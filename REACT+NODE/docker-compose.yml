@@ -1,0 +1,35 @@
+version: "1"
+services:
+  api:
+    container_name: api-devops
+    restart: always
+    build: ./apiNode
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - db
+    volumes:
+      - .:/src/app
+
+  db:
+    container_name: postgres-devops
+    image: postgres
+    ports:
+      - "5432:${pgPort}"
+    volumes:
+      - data:/data/db
+    environment:
+      - POSTGRES_PASSWORD=${pgPassword}
+      - POSTGRES_DB=${pgDatabase}
+    networks:
+      - shared-network  
+
+  react:
+    container_name: react-devops
+    restart: always
+    build: ./react-app
+    ports:
+      - "3000:3000"
+
+volumes:
+  data: {}
