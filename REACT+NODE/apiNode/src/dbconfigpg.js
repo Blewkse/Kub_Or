@@ -1,20 +1,11 @@
-const { Client } = require("pg");
-require("dotenv").config();
 
-console.log(process.env.pgHost);
-const client = new Client({
-  host: process.env.pgHost,
-  user: process.env.pgUser,
-  port: process.env.pgPort,
-  password: process.env.pgPassword,
-  database: process.env.pgDatabase,
-});
+const client = require("db");
 
 client.connect();
 
 module.exports = {
   getMovies: async (req, res) => {
-    client.query("Select * from movies", (err, res2) => {
+    client.query("Select * from devopsMovies", (err, res2) => {
       if (!err) {
         res.status(200).send({ reponse: res2.rows });
       } else {
@@ -31,7 +22,7 @@ module.exports = {
       return;
     }
     client.query(
-      "Insert into movies (name,realisator) values($1,$2) returning *",
+      "Insert into devopsMovies (name,realisator) values($1,$2) returning *",
       [name, realisator],
       (err, res) => {
         if (err) {

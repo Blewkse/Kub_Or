@@ -10,7 +10,14 @@ services:
       - db
     volumes:
       - .:/src/app
-
+  nginx:
+    depends_on:
+      - api
+      - react
+    restart: always
+    build: ./nginx
+    ports:
+      - "3050:80"
   db:
     container_name: postgres-devops
     image: postgres
@@ -21,8 +28,6 @@ services:
     environment:
       - POSTGRES_PASSWORD=${pgPassword}
       - POSTGRES_DB=${pgDatabase}
-    networks:
-      - shared-network  
 
   react:
     container_name: react-devops
