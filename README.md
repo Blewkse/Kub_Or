@@ -12,9 +12,9 @@
 <h2 align="center">Kub_Or</h2>
 
 <p align="center">
-  <a href="#equipe">Equipe</a> &#xa0; | &#xa0; 
-  <a href="#projet">Projet</a> &#xa0; | &#xa0;
-  <a href="#technologies">Techno</a> &#xa0; | &#xa0;
+  <a href="#-equipe">Equipe</a> &#xa0; | &#xa0; 
+  <a href="#-projet">Projet</a> &#xa0; | &#xa0;
+  <a href="#-technologies">Techno</a> &#xa0; | &#xa0;
 </p>
 
 <br>
