@@ -5,8 +5,9 @@ WORKDIR /src/back
 COPY package.json . 
 
 RUN npm install 
-RUN npm run migrate
 
 COPY . . 
+
+EXPOSE 5000
 
 CMD ["npm", "run", "start"]

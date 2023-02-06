@@ -1,8 +1,18 @@
 version: "1"
 services:
+  db:
+    image: postgres
+    ports:
+      - "5432:${pgPort}"
+    environment:
+      - POSTGRES_PASSWORD=${pgPassword}
+      - POSTGRES_DB=${pgDatabase}
+      - POSTGRES_USER=${pgUSer}
+    volumes:
+      - data:/data/db
   api:
     container_name: api-devops
-    restart: always
+    restart: on-failure
     build: ./apiNode
     ports:
       - ${PORT}:${PORT}
@@ -10,25 +20,8 @@ services:
       - db
     volumes:
       - .:/src/app
-  nginx:
-    depends_on:
-      - api
-      - react
-    restart: always
-    build: ./nginx
-    ports:
-      - "3050:80"
-  db:
-    container_name: postgres-devops
-    image: postgres
-    ports:
-      - "5432:${pgPort}"
-    volumes:
-      - data:/data/db
-    environment:
-      - POSTGRES_PASSWORD=${pgPassword}
-      - POSTGRES_DB=${pgDatabase}
-
+    env_file:
+      - .env
   react:
     container_name: react-devops
     restart: always

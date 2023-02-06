@@ -1,10 +1,17 @@
-const { Client } = require("pg");
-require("dotenv").config();
+const { Client } = require('pg')
 
-module.exports = Client({
-  host: process.env.pgHost,
-  user: process.env.pgUser,
-  port: process.env.pgPort,
-  password: process.env.pgPassword,
-  database: process.env.pgDatabase,
+const client = new Client({
+    user: process.env.pgUser,
+    host: process.env.pgHost,
+    database: process.env.pgDatabase,
+    password: process.env.pgPassword,
+    port: process.env.pgPort,
 });
+
+client.connect();
+
+module.exports = {
+    getClient: () => {
+        return client;
+    }
+}

@@ -1,7 +1,7 @@
+const db = require("./db")
 
-const client = require("db");
 
-client.connect();
+const client = db.getClient();
 
 module.exports = {
   getMovies: async (req, res) => {
