@@ -14,7 +14,7 @@
 <p align="center">
   <a href="#-equipe">Equipe</a> &#xa0; | &#xa0; 
   <a href="#-projet">Projet</a> &#xa0; | &#xa0;
-  <a href="#-technologies">Techno</a> &#xa0; | &#xa0;
+  <a href="#-techno">Techno</a> &#xa0; | &#xa0;
 </p>
 
 <br>
@@ -28,12 +28,15 @@
 
 ## ✨ Projet ##
 
-:heavy_check_mark: Déployer une stack web avec Kubernetes;\
+:heavy_check_mark: Déployer une stack web avec Kubernetes;
 
 ## 🚀 Techno ##
 
-Les techno suivantes ont été utilisé pour cette api :
+Les techno suivantes ont été utilisé pour le déployement de la stack web :
 
 - [Node.js](https://nodejs.org/en/)
 - [Kubernetes](https://kubernetes.io/fr/)
+- [React](https://fr.reactjs.org/)
+- HTML/CSS/JSS
+  
 
