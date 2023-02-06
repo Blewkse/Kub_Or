@@ -37,6 +37,6 @@ Les techno suivantes ont été utilisé pour le déployement de la stack web :
 - [Node.js](https://nodejs.org/en/)
 - [Kubernetes](https://kubernetes.io/fr/)
 - [React](https://fr.reactjs.org/)
-- HTML/CSS/JSS
+- HTML / CSS / JavaScript
   
 
