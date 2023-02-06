@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokemon API</title>
+  <link rel="stylesheet" href="./scss/style.css">
+</head>
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #fff;
+    color: #333;
+    font-family: "Trebuchet MS";
+  }
+
+  h1 {
+    margin-bottom: 40px;
+    font-size: 40px;
+  }
+
+  main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 60vh;
+  }
+
+  main .searchbox {
+    display: flex;
+
+  }
+
+  main .searchbox input {
+    padding: 10px 20px;
+    border-radius: 6px 0 0 6px;
+    border: 0;
+    outline: none;
+    width: 300px;
+    border: 1px solid #333;
+    border-radius: 4px 0 0 4px;
+  }
+
+  main .searchbox button {
+    padding: 10px 20px;
+    border-radius: 0 6px 6px 0;
+    border: 1px solid #333;
+    border-left: none;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  main .pokemon-details {
+    display: flex;
+    justify-content: space-around;
+    width: 350px;
+    margin-top: 30px;
+  }
+
+  main .pokemon-details img {
+    width: 100px;
+    height: 110px;
+  }
+
+  main .pokemon-details h1 {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  main .pokemon-details .type img {
+    width: 15px;
+    height: 15px;
+    transform: translate(5px, 4px);
+  }
+
+</style>
+
+<body>
+  <main>
+
+    <h1>Cherchez un Pokémon</h1>
+
+    <div class="searchbox">
+      <input type="text" placeholder="Entrez le nom de votre Pokémon ..." id="pokemonName">
+      <button id="search">🔍</button>
+    </div>
+
+    <div class="pokemon-details">
+
+      <div class="pokemonInfo">
+        <h1></h1>
+        <p></p>
+      </div>
+    </div>
+
+  </main>
+  <script src="./main.js" defer></script>
+</body>
+
+<script>
+  document.querySelector('#search').addEventListener('click', getPokemon);
+
+  function lowerCaseName(string) {
+    return string.toLowerCase();
+  }
+
+  function getPokemon(e) {
+    const name = document.querySelector('#pokemonName').value;
+    const pokemonName = lowerCaseName(name);
+
+    fetch(`https://pokebuildapi.fr/api/v1/pokemon/${name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        document.querySelector('.pokemon-details').innerHTML = `
+        <img src="${data.image}" alt="${data.name}">
+
+        <div class="pokemonInfo">
+          <h1>${data.name}</h1>
+          <p class="type" ><span>Type : ${data.apiTypes[0].name}</ span><img class="type-img" src="${data.apiTypes[0].image}" alt="${data.apiTypes[0].name}"></p>
+          <p>PV : ${data.stats.HP}</p>
+          <p>Attaque : ${data.stats.attack}</p>
+          <p>Défense : ${data.stats.defense}</p>
+        </div>`;
+      })
+      .catch((err) => {
+        console.log('Pokemon not found', err);
+      });
+
+    e.preventDefault();
+  }
+
+  getPokemon();
+
+</script>
+
+</html>
