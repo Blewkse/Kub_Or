@@ -30,4 +30,9 @@ How to install Kubectl and Minikube
 
 `minikube service pokemonapi`
 
+<em>Lancement du service ...</em>
 <img src="./pokemonAPI/img/minikube_launch.png"></img>
+
+<em>Le dashboard</em>
+<img src="./pokemonAPI/img/dashboard.png"></img>
+
